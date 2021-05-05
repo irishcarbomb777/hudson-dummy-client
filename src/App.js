@@ -26,15 +26,15 @@ const controlRadio = [
 
 ]
 const systemToken = "cbe710a4dc4fab2610361484b00e65c4c9275285"
-const userToken = "90643c401ce6edff2c57b4c804af9ab7566b9520"
+// const userToken = "90643c401ce6edff2c57b4c804af9ab7566b9520"
 const url = "https://hudson-api-test.mcclellen.net:8000/api/"
 export const App = () => {
 
   const [lotFields, handleLotFieldChange] = useFormFields(lotFieldsInit)
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('1');
 
-  const [controlTubeCodes, handleControlTubeCodesChange] = useFormFields(controlTubeCodesInit)
+  // const [controlTubeCodes, handleControlTubeCodesChange] = useFormFields(controlTubeCodesInit)
 
   const get_lot_info = async () => {
     try{
@@ -161,6 +161,8 @@ export const App = () => {
               </Card.Body>
             </Card>
           </Col>
+
+          
           <Col>
             <Card>
               <Card.Header>Setup Functions</Card.Header>
