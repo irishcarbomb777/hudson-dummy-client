@@ -23,8 +23,13 @@ const controlTubeCodesInit = [
 const controlRadio = [
   {name: 'Negative', value: '1'},
   {name: 'Positive', value: '2'}
-
 ]
+
+const batchDataKvp = [
+  {key: "", value: ""},
+  {key: "", value: ""},
+  {key: "", value: ""}
+] 
 const systemToken = "cbe710a4dc4fab2610361484b00e65c4c9275285"
 // const userToken = "90643c401ce6edff2c57b4c804af9ab7566b9520"
 const url = "https://hudson-api-test.mcclellen.net:8000/api/"
@@ -54,7 +59,7 @@ export const App = () => {
     <MainContainer>
       <Container>
         <Row>
-          <Title>Hudson Software Simulation</Title>
+          <Title>FluroTest Software Simulation</Title>
         </Row>
         <Row>
           <Col className="justify-content-md-center">
@@ -65,7 +70,7 @@ export const App = () => {
               </Card.Header>
               <Card.Body>
                 <Form>
-                  <Form.Label>Input Lot Info</Form.Label>
+                  <Form.Label class="font-weight-bold">Input Lot Info</Form.Label>
                   {lotFieldsInit.map((kvp, index) => {
                     return (
                       <div key={index}>
@@ -111,7 +116,7 @@ export const App = () => {
                 </Form>
                 <br/> 
                 <Form>
-                  <Form.Label>Add Control Tubes</Form.Label>
+                  <Form.Label class="font-weight-bold">Add Control Tubes</Form.Label>
                     <Row>
                     <ButtonGroup toggle>
                       {controlRadio.map((radio, idx) => (
@@ -141,7 +146,7 @@ export const App = () => {
                               id='key'
                               data-index={index}
                               value={lotFields['key']}
-                              onChange={handleLotFieldChange}
+                              // onChange={handleLotFieldChange}
                               placeholder="control tube barcode" />
                           </Col>
                         </Row>
@@ -162,11 +167,125 @@ export const App = () => {
             </Card>
           </Col>
 
-          
+
           <Col>
             <Card>
-              <Card.Header>Setup Functions</Card.Header>
-              <Card.Body>Testing</Card.Body>
+              <Card.Header><Card.Title>Run Test Functions</Card.Title></Card.Header>
+              <Card.Body>
+                <Form>
+                  <Form.Label class="font-weight-bold">Create Batch</Form.Label>
+                  {batchDataKvp.map((kvp, index) => {
+                    return (
+                      <div key={index}>
+                        <Row>
+                          <Col>
+                            <Form.Control
+                              type='text'
+                              id='key'
+                              data-index={index}
+                              value={batchDataKvp['key']}
+                              onChange={handleLotFieldChange}
+                              placeholder="batch_data_key" />
+                          </Col>
+                          <Col>
+                            <Form.Control
+                              type='text'
+                              id='value'
+                              data-index={index}
+                              value={batchDataKvp['value']}
+                              onChange={handleLotFieldChange}
+                              placeholder="batch_data_value" />
+                          </Col>
+                        </Row>
+                        <br/>
+                      </div>
+                    )
+                  })}
+                  <Row className="justify-content-md-center">
+                    <Button
+                      onClick={get_lot_info}
+                    >
+                      Create Batch
+                    </Button>
+                  </Row>
+                  <br/>
+                </Form>
+                <Form>
+                  <Form.Label class="font-weight-bold">Add Batch Data</Form.Label>
+                  {batchDataKvp.map((kvp, index) => {
+                    return (
+                      <div key={index}>
+                        <Row>
+                          <Col>
+                            <Form.Control
+                              type='text'
+                              id='key'
+                              data-index={index}
+                              value={batchDataKvp['key']}
+                              onChange={handleLotFieldChange}
+                              placeholder="batch_data_key" />
+                          </Col>
+                          <Col>
+                            <Form.Control
+                              type='text'
+                              id='value'
+                              data-index={index}
+                              value={batchDataKvp['value']}
+                              onChange={handleLotFieldChange}
+                              placeholder="batch_data_value" />
+                          </Col>
+                        </Row>
+                        <br/>
+                      </div>
+                    )
+                  })}
+                  <Row className="justify-content-md-center">
+                    <Button
+                      onClick={get_lot_info}
+                    >
+                      Add Data
+                    </Button>
+                  </Row>
+                  <br/>
+                </Form>
+                <Form>
+                  <Row>
+                    <Form.Label class="font-weight-bold">Add Batch Event</Form.Label>
+                  </Row>
+                  <Row>
+                  <Form.Label>This represents an error code thrown by the machine</Form.Label>
+                  </Row>
+                        <Row>
+                          <Col>
+                            <Form.Control
+                              type='text'
+                              id='key'
+                              value={batchDataKvp['key']}
+                              // onChange={handleLotFieldChange}
+                              placeholder="error code #" />
+                          </Col>
+                          <Col>
+                            <Form.Control
+                              type='text'
+                              id='value'
+                              value={batchDataKvp['value']}
+                              // onChange={handleLotFieldChange}
+                              placeholder="error message" />
+                          </Col>
+                        </Row>
+                        <br/>
+                  <Row className="justify-content-md-center">
+                    <Button
+                      onClick={get_lot_info}
+                    >
+                      Throw Error
+                    </Button>
+                  </Row>
+                  <br/>
+                </Form>
+
+
+              </Card.Body>
             </Card>
           </Col>
         </Row>
