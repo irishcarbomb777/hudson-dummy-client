@@ -30,7 +30,7 @@ export const Login = () => {
     try {
       await Auth.signIn(fields.username, fields.password); // Send User Pool login credentials to Auth
       setLoginAuthenticated(true);         // Set User Session context flag to true
-      history.push("/dashboard");                  // Push the "/" path to history to redirect          
+      history.push("/simulator");                  // Push the "/" path to history to redirect          
     } catch (e) {
       onError(e);
     }    event.preventDefault();
