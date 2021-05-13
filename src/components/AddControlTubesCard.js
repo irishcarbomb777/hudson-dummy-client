@@ -11,8 +11,6 @@ export const AddControlTubesCard = () => {
   const createControlTubes = async () => {
     const params = {
       body: {
-        system_token : "f15a729817f03b1cf6a1e4ed9396c72da8e24562",
-        user_token   : "e2467cd37884b27cd90dae2a35903eef08f56921",
         control_type : controlType.toLowerCase(),
         run_code_id    : runCodeId,
       }
@@ -24,9 +22,15 @@ export const AddControlTubesCard = () => {
   return(
     <Card>
       <Card.Header>
-        <Card.Title>Add Control Tubes</Card.Title>
+        <Card.Title>Add Control Tubes <b>1.</b></Card.Title>
       </Card.Header>
       <Card.Body>
+        <Card.Text>
+          <b>Operator prepares a batch of positive OR negative controls,
+          places controls in a 96-well plate, and scans in the barcodes.</b><br/>
+          &emsp; As soon as the controls are prepared the barcodes are scanned and link
+          to the LOT ID information. The date and time will correspond to the preparation time.
+        </Card.Text>
         <Form>
           <Form.Label className="font-weight-bold">Control Tube Specs</Form.Label>
           <Row>

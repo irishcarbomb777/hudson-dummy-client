@@ -7,6 +7,8 @@ import {AddControlTubesCard} from "../components/AddControlTubesCard"
 import { AddBatchTubeBarcodesCard } from "../components/AddBatchTubeBarcodesCard"
 import { BatchControlCard } from "../components/BatchControlCard";
 import axios from 'axios'
+import { AddBatchTubeDataCard } from "../components/AddBatchTubeDataCard";
+import { SetBatchCompleteCard } from "../components/SetBatchCompleteCard";
 
 const lotFieldsInit = [
   {key: "", value:""},
@@ -89,17 +91,21 @@ export const Home = () => {
         </Row>
         <Row>
           <Col className="justify-content-md-center">
+            <AddControlTubesCard/>
+            <br/>
+            <AddBatchTubeBarcodesCard/>
+            <br/>
+            <AddBatchTubeDataCard/>
+            <br/>
+            <SetBatchCompleteCard/>
+          </Col>
+
+          <Col>
             <SetupCard
               fieldData={lotFields}
               handleFieldChange={handleLotFieldsChange}
               onSubmit={updateLotInfo} />
             <br/>
-            <AddControlTubesCard/>
-            <br/>
-            <AddBatchTubeBarcodesCard/>
-          </Col>
-
-          <Col>
             <BatchControlCard
               createBatchData={createBatchFields}
               handleCreateBatchFieldsChange={handleCreateBatchFieldsChange}

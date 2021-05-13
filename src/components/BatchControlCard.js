@@ -1,6 +1,6 @@
 import React, {useState}from 'react';
 import {Row, Card, Button, ListGroup} from 'react-bootstrap'
-import axios from 'axios'
+import {API} from 'aws-amplify'
 import {KvpInputForm} from '../components/KvpInputForm'
 import {KvpInputFormWguid} from '../components/KvpInputFormWguid'
 import {BatchEventInput} from '../components/BatchEventInput'
@@ -27,14 +27,11 @@ export const BatchControlCard = ({
   const [openBatches, setOpenBatches] = useState([])
 
   const listOpenBatches = async () => {
-    const url = "https://hudson-api-test.mcclellen.net:8000/api/"
     try {
-      const response = await axios.post(url+"list-open-batches/",
-      {
-        "system_token" : "f15a729817f03b1cf6a1e4ed9396c72da8e24562"
-      })
-      console.log(response.data.guids)
-      setOpenBatches(response.data.guids)
+      const response = await API.get('hudson-dummy-python-api', '/listOpenBatches')
+
+      console.log(response)
+      setOpenBatches(response[1].guids)
     } catch(e) {
       console.log(e)
     }
@@ -44,9 +41,13 @@ export const BatchControlCard = ({
     <>
       <Card>
         <Card.Header>
-          <Card.Title>Batch Control</Card.Title>
+          <Card.Title>Batch Control <b>4.</b></Card.Title>
         </Card.Header>
         <Card.Body>
+          <Card.Text>
+            <b>1.</b> Operator confirms the proper setup of the run and types any comments.<br/>
+            <b>2.</b> Operator initializes a batch run (Create Batch Button)
+          </Card.Text>
           <KvpInputForm
             formTitle="Create Batch"
             fieldData={createBatchData}

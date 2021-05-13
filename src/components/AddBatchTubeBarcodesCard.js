@@ -12,7 +12,6 @@ export const AddBatchTubeBarcodesCard = () => {
   const addBatchTubeData = async () => {
     const params = {
       body: {
-        system_token : "f15a729817f03b1cf6a1e4ed9396c72da8e24562",
         guid : activeGUID,
         run_code_id : runCodeId,
         iteration   : Number(iteration)
@@ -25,9 +24,17 @@ export const AddBatchTubeBarcodesCard = () => {
   return(
     <Card>
       <Card.Header>
-        <Card.Title>Add Sample Data</Card.Title>
+        <Card.Title>Scan in Patient Tubes</Card.Title>
       </Card.Header>
       <Card.Body>
+        <Card.Text>
+          <b>1.</b> Operator selects a rack of samples (max 90 samples/rack) and places
+          3(+) and 3(-) controls, previously prepared and scanned on the specified locations<br/>
+          <b>2.</b> Operator places the sample rack in the corresponsing platform location<br/>
+          <b>3.</b> Hudson software confirms the reading of all barcodes and the presence of 3(+)
+          and 3(-) controls.
+
+        </Card.Text>
         <Form>
           <Form.Label className="font-weight-bold">Sample Data Specs</Form.Label>
           <Row>
@@ -56,9 +63,10 @@ export const AddBatchTubeBarcodesCard = () => {
               onChange={(e)=>setIteration(e.target.value)}
               placeholder="Set Iteration # (Registered Patient Samples Limited)"/>
           </Row>
+          <br/>
           <Row className="justify-content-md-center">
             <Button onClick={addBatchTubeData}>
-              Add Batch Tube Data
+              Add Batch Patient Barcodes
             </Button>
           </Row>
           

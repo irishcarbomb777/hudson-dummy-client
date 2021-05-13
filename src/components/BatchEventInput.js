@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Row, Form, Button} from 'react-bootstrap';
-import axios from 'axios'
+import {API} from 'aws-amplify'
 
 export const BatchEventInput = () => {
   const [activeGUID, setActiveGUID] = useState("")
@@ -8,15 +8,15 @@ export const BatchEventInput = () => {
   const [message, setMessage] = useState("")
 
   const addBatchEvent = async () => {
-    const url = "https://hudson-api-test.mcclellen.net:8000/api/"
     try {
-      const response = await axios.post(url+"add-batch-event/",
-      {
-        "system_token" : "f15a729817f03b1cf6a1e4ed9396c72da8e24562",
-        "type"         : Number(msgType),
-        "guid"         : activeGUID,
-        "message"      : message
-      })
+      const params = {
+        body: {
+          type         : Number(msgType),
+          guid         : activeGUID,
+          message      : message
+        }
+      }
+      const response = await API.put('hudson-dummy-python-api', '/addBatchEvent', params)
       console.log(response)
     } catch(e) {
       console.log(e)
